@@ -34,7 +34,12 @@ def capture(group_id, filter_id, out_path, tobs):
     dada_dbdisk.kill()
     feng2dada.kill()
 
-
-
-
+def cycle_capture(filter_id, tobs, base_path):
+    for group_id in range(16):
+        out_path = os.path.join(base_path,"group_%02"%(group_id))
+        try:
+            os.mkdir(out_path)
+        except Exception as error:
+            print error
+        capture(group_id, filter_id, out_path, tobs)
 
