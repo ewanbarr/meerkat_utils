@@ -2,7 +2,7 @@ from subprocess import Popen, PIPE
 import os
 
 FENG2DADA = "/home/pulsar/soft/psrdada_cpp/build/psrdada_cpp/meerkat/tools/feng2dada"
-UDPDB = "/home/pulsar/soft/psrdada.20150805/asterix/udpdb"
+UDPDB = "/home/pulsar/soft/psrdada.20150805/asterix/udp2db"
 HEADER_MAKER = "/home/pulsar/scripts/freq_calc.py"
 HEADER = "/tmp/header.txt"
 
