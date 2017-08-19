@@ -16,7 +16,7 @@ def reset_dada_buffers():
     os.system("dada_db -k caca -n 20 -b 209715200 -l -p")
 
 def make_header(group_id, filter_id):
-    cmd "python {} -a 4 -g {} -f {} -d > {}".format(
+    cmd = "python {} -a 4 -g {} -f {} -d > {}".format(
         HEADER_MAKER, group_id, filter_id, HEADER)
     os.system(cmd)
 
