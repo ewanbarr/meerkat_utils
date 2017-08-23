@@ -24,7 +24,7 @@ FENG2DADA = ("nvidia-docker run "
     "--name feng2dada "
     "--rm "
     "srx00:5000/dspsr:cuda8.0 "
-    "feng2dada -i dada -o caca -c 256 --log_level=debug")
+    "/home/psr/software/psrdada_cpp/build/psrdada_cpp/meerkat/tools/feng2dada -i dada -o caca -c 256 --log_level=debug")
 
 DADADBDISK = ("nvidia-docker run -d "
     "--ulimit memlock=-1 "
