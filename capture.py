@@ -14,8 +14,8 @@ UDP2DB = ("nvidia-docker run -d "
     "--ipc=host "
     "--name udp2db "
     "--rm "
-    "srx00:5000/dspsr:cuda8.0 "
     "-e LD_PRELOAD=libvma.so "
+    "srx00:5000/dspsr:cuda8.0 "
     "udp2db -s {tobs} -p 7148 -m {group} -H /tmp/header.txt")
 
 FENG2DADA = ("nvidia-docker run "
