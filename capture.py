@@ -4,7 +4,7 @@ import os, atexit
 HEADER_MAKER = "/home/pulsar/scripts/freq_calc.py"
 HEADER = "/tmp/header.txt"
 
-UDP2DB = ("nvidia-docker run -d "
+UDP2DB = ("nvidia-docker run "
     "--net=host "
     "--ulimit memlock=-1 "
     "--device=/dev/infiniband/rdma_cm "
@@ -18,7 +18,7 @@ UDP2DB = ("nvidia-docker run -d "
     "srx00:5000/dspsr:cuda8.0 "
     "udp2db -s {tobs} -p 7148 -m {group} -H /tmp/header.txt")
 
-FENG2DADA = ("nvidia-docker run "
+FENG2DADA = ("nvidia-docker run -d "
     "--ulimit memlock=-1 "
     "--ipc=host "
     "--name feng2dada "
