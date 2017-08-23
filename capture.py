@@ -62,6 +62,7 @@ def make_header(group_id, filter_id):
 def capture(group_id, filter_id, out_path, tobs, feng_id):
     group = "239.2.1.{}".format(150+group_id)
     reset_dada_buffers()
+    reset_dada_buffers()
     make_header(group_id, filter_id)
     os.system(DADADBDISK.format(output=out_path))
     os.system(FENG2DADA)
@@ -71,6 +72,7 @@ def capture(group_id, filter_id, out_path, tobs, feng_id):
 
 def capture_psr(group_id, filter_id, out_path, tobs, feng_id, psr):
     group = "239.2.1.{}".format(150+group_id)
+    reset_dada_buffers()
     reset_dada_buffers()
     make_header(group_id, filter_id)
     os.system(DSPSR.format(psr=psr, output=out_path))
