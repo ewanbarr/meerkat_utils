@@ -52,9 +52,10 @@ def make_header(group_id, filter_id):
 def capture(group_id, filter_id, out_path, tobs):
     group = "239.2.1.{}".format(150+group_id)
     reset_dada_buffers()
+    reset_dada_buffers()
     make_header(group_id, filter_id)
-    os.system(DADADBDISK.format(output=out_path))
     os.system(FENG2DADA)
+    os.system(DADADBDISK.format(output=out_path))
     os.system(UDP2DB.format(tobs=tobs,group=group))
     os.system("docker kill feng2dada")
     os.system("docker kill dadadbdisk")
