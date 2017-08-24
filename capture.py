@@ -45,14 +45,21 @@ DSPSR = ("nvidia-docker run -d "
     "srx00:5000/dspsr:cuda8.0 "
     "dspsr -N {psr} -L 2 -t 12 -U 1")
 
+DADADB = ("docker run "
+    "--ulimit memlock=-1 "
+    "--ipc=host "
+    "--name dada_db "
+    "--rm "
+    "srx00:5000/dspsr:cuda8.0 {}")
+
 def make_dada_key_string(key):
     return "DADA INFO:\nkey {0}".format(key)
 
 def reset_dada_buffers():
-    os.system("dada_db -d")
-    os.system("dada_db -n 20 -b 209715200 -l -p")
-    os.system("dada_db -d -k caca")
-    os.system("dada_db -k caca -n 20 -b 209715200 -l -p")
+    os.system(DADADB.format("dada_db -d"))
+    os.system(DADADB.format("dada_db -n 20 -b 209715200 -l -p"))
+    os.system(DADADB.format("dada_db -d -k caca"))
+    os.system(DADADB.format("dada_db -k caca -n 20 -b 209715200 -l -p"))
 
 def make_header(group_id, filter_id):
     cmd = "python {} -a 4 -g {} -f {} -d > {}".format(
