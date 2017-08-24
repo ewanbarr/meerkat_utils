@@ -56,8 +56,8 @@ def make_dada_key_string(key):
     return "DADA INFO:\nkey {0}".format(key)
 
 def reset_dada_buffers():
-    os.system(DADADB.format("dada_db -d"))
-    os.system(DADADB.format("dada_db -n 20 -b 209715200 -l -p"))
+    os.system(DADADB.format("dada_db -d -k dada"))
+    os.system(DADADB.format("dada_db -n 20 -b 209715200 -l -p -k dada"))
     os.system(DADADB.format("dada_db -d -k caca"))
     os.system(DADADB.format("dada_db -k caca -n 20 -b 209715200 -l -p"))
 
@@ -68,7 +68,6 @@ def make_header(group_id, filter_id):
 
 def capture(group_id, filter_id, out_path, tobs, feng_id, interface, epoch):
     group = "239.2.1.{}".format(150+group_id)
-    reset_dada_buffers()
     reset_dada_buffers()
     make_header(group_id, filter_id)
     os.system(DADADBDISK.format(output=out_path))
