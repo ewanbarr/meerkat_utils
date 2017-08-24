@@ -5,6 +5,7 @@ HEADER_MAKER = "/home/pulsar/scripts/freq_calc.py"
 HEADER = "/tmp/header.txt"
 
 UDP2DB = ("nvidia-docker run "
+    "-u 50000:50000 "
     "--net=host "
     "--ulimit memlock=-1 "
     "--device=/dev/infiniband/rdma_cm "
@@ -19,6 +20,7 @@ UDP2DB = ("nvidia-docker run "
     "udp2db -s {tobs} -p 7148 -m {group} -H /tmp/header.txt -a {feng_id} -i {interface} -t {epoch}")
 
 FENG2DADA = ("nvidia-docker run -d "
+    "-u 50000:50000 "
     "--ulimit memlock=-1 "
     "--ipc=host "
     "--name feng2dada "
@@ -27,6 +29,7 @@ FENG2DADA = ("nvidia-docker run -d "
     "/home/psr/software/psrdada_cpp/build/psrdada_cpp/meerkat/tools/feng2dada -i dada -o caca -c 256 --log_level=debug")
 
 DADADBDISK = ("nvidia-docker run -d "
+    "-u 50000:50000 "
     "--ulimit memlock=-1 "
     "--ipc=host "
     "--name dada_dbdisk "
@@ -36,6 +39,7 @@ DADADBDISK = ("nvidia-docker run -d "
     "dada_dbdisk -k caca -D /output/")
 
 DSPSR = ("nvidia-docker run -d "
+    "-u 50000:50000 "
     "--ulimit memlock=-1 "
     "--ipc=host "
     "--name dspsr "
@@ -46,6 +50,7 @@ DSPSR = ("nvidia-docker run -d "
     "dspsr -N {psr} -L 2 -t 12 -U 1")
 
 DADADB = ("docker run "
+    "-u 50000:50000 "
     "--ulimit memlock=-1 "
     "--ipc=host "
     "--name dada_db "
