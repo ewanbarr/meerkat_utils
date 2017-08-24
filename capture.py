@@ -70,10 +70,15 @@ def capture(group_id, filter_id, out_path, tobs, feng_id, interface, epoch):
     group = "239.2.1.{}".format(150+group_id)
     reset_dada_buffers()
     make_header(group_id, filter_id)
-    os.system(DADADBDISK.format(output=out_path))
+    cmd = DADADBDISK.format(output=out_path)
+    print cmd
+    os.system(cmd)
+    print FENG2DADA
     os.system(FENG2DADA)
-    os.system(UDP2DB.format(tobs=tobs, group=group,
-        feng_id=feng_id, interface=interface, epoch=epoch))
+    cmd = UDP2DB.format(tobs=tobs, group=group,
+        feng_id=feng_id, interface=interface, epoch=epoch)
+    print cmd
+    os.system(cmd)
     os.system("docker kill feng2dada")
     os.system("docker kill dada_dbdisk")
 
