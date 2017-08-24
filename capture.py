@@ -16,7 +16,7 @@ UDP2DB = ("nvidia-docker run "
     "--rm "
     "-e LD_PRELOAD=libvma.so "
     "srx00:5000/dspsr:cuda8.0 "
-    "udp2db -s {tobs} -p 7148 -m {group} -H /tmp/header.txt -a {feng_id}")
+    "udp2db -s {tobs} -p 7148 -m {group} -H /tmp/header.txt -a {feng_id} -i {interface}")
 
 FENG2DADA = ("nvidia-docker run -d "
     "--ulimit memlock=-1 "
@@ -59,14 +59,15 @@ def make_header(group_id, filter_id):
         HEADER_MAKER, group_id, filter_id, HEADER)
     os.system(cmd)
 
-def capture(group_id, filter_id, out_path, tobs, feng_id):
+def capture(group_id, filter_id, out_path, tobs, feng_id, interface):
     group = "239.2.1.{}".format(150+group_id)
     reset_dada_buffers()
     reset_dada_buffers()
     make_header(group_id, filter_id)
     os.system(DADADBDISK.format(output=out_path))
     os.system(FENG2DADA)
-    os.system(UDP2DB.format(tobs=tobs, group=group))
+    os.system(UDP2DB.format(tobs=tobs, group=group,
+        feng_id=feng_id, interface=interface))
     os.system("docker kill feng2dada")
     os.system("docker kill dada_dbdisk")
 
