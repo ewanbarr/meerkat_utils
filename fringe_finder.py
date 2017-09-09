@@ -53,8 +53,10 @@ class DadaFileStream(object):
                     f.seek(HEADER_SIZE)
                 data = np.fromfile(f,count=nsamps*1024,dtype='byte')
             print "Read {} bytes".format(data.size)
-            data = data.astype("float32").view("complex64")
+            data = np.copy(data.astype("float32").view("complex64"))
             all_data.append(data)
+            print data.shape
+            print len(all_data)
         data = np.array(all_data).ravel()
         print data.shape
         return data.reshape(data.size/512,256,2)
