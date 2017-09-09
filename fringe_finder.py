@@ -24,9 +24,12 @@ class DadaFileStream(object):
             header = f.read(HEADER_SIZE)
         header = header.splitlines()
         for line in header:
-            key = line.split()[0]
-            if key in HEADER_PARSER.keys():
-                self._header[key] = HEADER_PARSER[key](line.split()[1])
+            try:
+                key = line.split()[0]
+                if key in HEADER_PARSER.keys():
+                    self._header[key] = HEADER_PARSER[key](line.split()[1])
+            except:
+                pass
 
     def extract(self, start, count):
         nsamps_per_file = self._header["FILE_SIZE"]/self._header["NBIT"]/self._header["NDIM"]/self._header["NPOL"]
