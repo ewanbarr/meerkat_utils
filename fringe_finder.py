@@ -32,7 +32,7 @@ class DadaFileStream(object):
                 pass
 
     def extract(self, start, count):
-        nsamps_per_file = self._header["FILE_SIZE"]/self._header["NBIT"]/self._header["NDIM"]/self._header["NPOL"]
+        nsamps_per_file = self._header["FILE_SIZE"]/self._header["NCHAN"]/self._header["NDIM"]/self._header["NPOL"]
         start_file = start/nsamps_per_file
         print "Start file:",start_file
         start_offset = start - (start_file * nsamps_per_file)
