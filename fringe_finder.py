@@ -37,10 +37,10 @@ class DadaFileStream(object):
         print "Start file:",start_file
         start_offset = start - (start_file * nsamps_per_file)
         print "Start file offset:", start_offset
-        n = [nsamps_per_file-start_offset]
+        n = [min(nsamps_per_file-start_offset,count)]
         all_data = []
         while sum(n) < count:
-            n.append(min(nsamps_per_file,count-n))
+            n.append(min(nsamps_per_file,count-sum(n)))
         print "Read sizes:",n
         for fname,nsamps in zip(self._files[start_file:start_file+len(n)],n):
             print "Reading {} samples from {}".format(nsamps,fname)
