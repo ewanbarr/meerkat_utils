@@ -42,10 +42,15 @@ class DadaFileStream(object):
         while sum(n) < count:
             n.append(min(nsamps_per_file,count-sum(n)))
         print "Read sizes:",n
+        first = True
         for fname,nsamps in zip(self._files[start_file:start_file+len(n)],n):
             print "Reading {} samples from {}".format(nsamps,fname)
             with open(fname,"r") as f:
-                f.seek(HEADER_SIZE)
+                if first:
+                    f.seek(HEADER_SIZE + start_offset*1024)
+                    first = False
+                else:
+                    f.seek(HEADER_SIZE)
                 data = np.fromfile(f,count=nsamps*1024,dtype='byte')
                 data = data.astype("float32").view("complex64")
                 all_data.append(data)
