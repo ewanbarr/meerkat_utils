@@ -34,7 +34,7 @@ class DadaFileStream(object):
     def extract(self, start, count):
         nsamps_per_file = self._header["FILE_SIZE"]/self._header["NCHAN"]/self._header["NDIM"]/self._header["NPOL"]
         start_file = start/nsamps_per_file
-        print "Start file:",start_file
+        print "Start file:",self._files[start_file]
         start_offset = start - (start_file * nsamps_per_file)
         print "Start file offset:", start_offset
         n = [min(nsamps_per_file-start_offset,count)]
@@ -55,11 +55,7 @@ class DadaFileStream(object):
             print "Read {} bytes".format(data.size)
             data = np.copy(data.astype("float32").view("complex64"))
             all_data.append(data)
-            print data.shape
-            print len(all_data)
-            print all_data
         data = np.hstack(all_data)
-        print data.shape
         return data.reshape(data.size/512,256,2)
 
 
