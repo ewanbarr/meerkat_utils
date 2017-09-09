@@ -57,7 +57,8 @@ class DadaFileStream(object):
             all_data.append(data)
             print data.shape
             print len(all_data)
-        data = np.array(all_data).ravel()
+            print all_data
+        data = np.hstack(all_data)
         print data.shape
         return data.reshape(data.size/512,256,2)
 
