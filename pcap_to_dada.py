@@ -355,7 +355,7 @@ if __name__ == "__main__":
     required.add_argument('-c','--nchan', dest='nchan', type=int,
         help='The number of F-engine channels, e.g. 4096')
     required.add_argument('-t','--global_sync_epoch', dest='global_sync_epoch', type=float,
-        help='The unix time global synchronization epoch')
+        help='The unix time global synchronization epoch', default=0.0)
     optional = parser.add_argument_group('optional arguments')
     optional.add_argument('-p','--prefix', dest='prefix', type=str,
         default=None, help='A prefix for output filenames. The output format will be {prefix}_{feng_id}_{subband_id}.dada')
